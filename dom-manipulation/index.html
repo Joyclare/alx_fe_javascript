@@ -9,7 +9,7 @@
     #quoteDisplay { margin: 20px auto; padding: 16px; border: 1px solid #ddd; border-radius: 8px; width: min(720px, 90%); min-height: 64px; font-size: 18px; font-style: italic; }
     .quote-category { display: block; margin-top: 8px; font-size: 14px; color: #666; font-style: normal; }
     #controls { margin-top: 16px; }
-    input, button { padding: 10px 12px; margin: 6px; }
+    input, button, label { display: block; margin: 6px auto; padding: 10px 12px; width: 60%; }
   </style>
 </head>
 <body>
@@ -19,9 +19,11 @@
 
   <div id="controls">
     <button id="newQuote">Show New Quote</button>
+    <button id="exportJsonBtn">Export Quotes (JSON)</button>
+    <input type="file" id="importFile" accept=".json" />
   </div>
 
-  <!-- The Add Quote form will be created dynamically via JS -->
+  <!-- Form dynamically generated -->
   <div id="formContainer"></div>
 
   <script src="script.js"></script>

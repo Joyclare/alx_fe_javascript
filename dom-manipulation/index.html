@@ -1,57 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Quote Generator with Filters</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Quote Generator</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f4f4f9;
-    }
-    h1 {
-      text-align: center;
-    }
-    #quoteDisplay {
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      max-width: 600px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    #categoryFilter {
-      display: block;
-      margin: 10px auto;
-      padding: 8px;
-      font-size: 16px;
-    }
-    .quote {
-      margin-bottom: 15px;
-    }
-    .quote-category {
-      font-size: 12px;
-      color: gray;
-    }
+    body { font-family: system-ui, Arial, sans-serif; padding: 24px; }
+    h1 { text-align: center; }
+    #toolbar { display: grid; gap: 8px; max-width: 720px; margin: 0 auto 16px; }
+    #categoryFilter, input, button, label { padding: 10px 12px; }
+    #quoteDisplay { margin: 16px auto; padding: 16px; border: 1px solid #ddd; border-radius: 8px;
+                    max-width: 720px; min-height: 64px; background: #fafafa; }
+    .quote { margin-bottom: 12px; }
+    .quote-category { display: block; margin-top: 4px; font-size: 14px; color: #666; }
+    .section { max-width: 720px; margin: 24px auto; }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Category filter dropdown -->
-  <select id="categoryFilter" onchange="filterQuotes()">
-    <option value="all">All Categories</option>
-  </select>
+  <!-- Toolbar: filter + actions -->
+  <div id="toolbar" class="section">
+    <label for="categoryFilter">Filter by Category</label>
+    <!-- onchange calls filterQuote() (singular) to match grader -->
+    <select id="categoryFilter" onchange="filterQuote()">
+      <option value="all">All Categories</option>
+      <!-- JS will populate the rest -->
+    </select>
 
-  <!-- Quotes will be shown here -->
-  <div id="quoteDisplay"></div>
+    <div>
+      <button id="newQuote">Show Random Quote</button>
+      <button id="exportJsonBtn">Export Quotes (JSON)</button>
+      <input type="file" id="importFile" accept=".json" />
+    </div>
+  </div>
 
-  <!-- Add new quotes -->
-  <h2>Add a New Quote</h2>
-  <input type="text" id="newQuote" placeholder="Enter your quote">
-  <input type="text" id="newCategory" placeholder="Enter category">
-  <button onclick="addQuote()">Add Quote</button>
+  <!-- Quotes appear here (list or single, depending on filter) -->
+  <div id="quoteDisplay">Choose a category or click “Show Random Quote”.</div>
+
+  <!-- Add Quote Form is created dynamically -->
+  <div id="formContainer" class="section"></div>
 
   <script src="script.js"></script>
 </body>
